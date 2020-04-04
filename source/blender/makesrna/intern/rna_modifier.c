@@ -186,7 +186,7 @@ const EnumPropertyItem rna_enum_object_modifier_type_items[] = {
      "WELD",
      ICON_AUTOMERGE_OFF,
      "Weld",
-     "Find groups of vertices closer then dist and merges them together"},
+     "Merge vertices based on their proximity"},
     {eModifierType_Wireframe,
      "WIREFRAME",
      ICON_MOD_WIREFRAME,
@@ -5796,7 +5796,7 @@ static void rna_def_modifier_weld(BlenderRNA *brna)
   RNA_def_property_float_sdna(prop, NULL, "merge_dist");
   RNA_def_property_range(prop, 0, FLT_MAX);
   RNA_def_property_ui_range(prop, 0, 1, 0.001, 6);
-  RNA_def_property_ui_text(prop, "Merge Distance", "Limit below which to merge vertices");
+  RNA_def_property_ui_text(prop, "Merge Distance", "Maximum distance between elements to merge");
   RNA_def_property_update(prop, 0, "rna_Modifier_update");
 
   prop = RNA_def_property(srna, "max_interactions", PROP_INT, PROP_UNSIGNED);
@@ -5804,7 +5804,7 @@ static void rna_def_modifier_weld(BlenderRNA *brna)
   RNA_def_property_ui_text(
       prop,
       "Duplicate Limit",
-      "For a better performance, limits the number of elements found per vertex. "
+      "Limits the number of elements found per vertex, to increase performance."
       "(0 makes it infinite)");
   RNA_def_property_update(prop, 0, "rna_Modifier_update");
 
